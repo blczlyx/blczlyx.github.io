@@ -1,0 +1,122 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>217.存在重复元素</title><meta name="description" content="SEER"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="描述给你一个整数数组 nums 。如果任一值在数组中出现 至少两次 ，返回 true ；如果数组中每个元素互不相同，返回 false 。
+示例
+输入：nums = [1,2,3,1]输出：true
+
+
+输入：nums = [1,2,3,4]输出：false
+
+
+输入：nums = [1,1,1,3,3,4,3,2,4,2]输出：true
+
+提示
+1 &amp;lt;= nums.length &amp;lt;= 105
+-109 &amp;lt;= nums[i] &amp;lt;= 109
+
+来源力扣（LeetCode）
+代码错误代码：超出时间限制
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        int temp, count = 0.."><script src="//unpkg.com/valine/dist/Valine.min.js"></script><meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">ChaosSRX_x</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">217.存在重复元素</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0"><span class="toc-text">描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA"><span class="toc-text">提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E6%BA%90"><span class="toc-text">来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">217.存在重复元素</h1><time class="has-text-grey" datetime="2023-11-30T03:02:16.007Z">2023-11-30</time><article class="mt-2 post-content"><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>给你一个整数数组 nums 。如果任一值在数组中出现 至少两次 ，返回 true ；如果数组中每个元素互不相同，返回 false 。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
+<p>输入：nums = [1,2,3,1]<br>输出：true</p>
+</blockquote>
+<blockquote>
+<p>输入：nums = [1,2,3,4]<br>输出：false</p>
+</blockquote>
+<blockquote>
+<p>输入：nums = [1,1,1,3,3,4,3,2,4,2]<br>输出：true</p>
+</blockquote>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><ul>
+<li>1 &lt;= nums.length &lt;= 105</li>
+<li>-109 &lt;= nums[i] &lt;= 109</li>
+</ul>
+<h3 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/contains-duplicate/">力扣（LeetCode）</a></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><strong>错误代码：</strong><br><code>超出时间限制</code></p>
+<pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> {
+        <span class="hljs-type">int</span> temp, count = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) {
+            temp = nums[i];
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; nums.length; j++) {
+                <span class="hljs-keyword">if</span> (temp == nums[j]) {
+                    count++;
+                }
+            }
+
+            <span class="hljs-keyword">if</span> (count &gt;= <span class="hljs-number">2</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }
+
+            count = <span class="hljs-number">0</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}</code></pre>
+<p>时间复杂度分析：O(N^2)<br>修改：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> {
+        <span class="hljs-type">int</span> temp, count = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) {
+            temp = nums[i];
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; nums.length; j++) {
+                <span class="hljs-keyword">if</span> (temp == nums[j]) {
+                    count++;
+
+                    <span class="hljs-keyword">if</span> (count &gt;= <span class="hljs-number">2</span>) {
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                    }
+                }
+            }
+
+            count = <span class="hljs-number">0</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}</code></pre>
+
+<p><strong>正确代码：</strong><br>方法一：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> {
+        Arrays.sort(nums);
+        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> nums.length;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) {
+            <span class="hljs-keyword">if</span> (nums[i] == nums[i + <span class="hljs-number">1</span>]) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}</code></pre>
+<p>复杂度分析：</p>
+<ul>
+<li>时间复杂度：O(NlogN)，其中 N 为数组的长度，需要对数组进行排序。</li>
+<li>空间复杂度：O(logN)，其中 N 为数组的长度，注意我们在这里应当考虑递归调用栈的深度。</li>
+</ul>
+<p>方法二：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">containsDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> {
+        Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;Integer&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> x : nums) {
+            <span class="hljs-keyword">if</span> (!set.add(x)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}</code></pre>
+<p>复杂度分析：</p>
+<ul>
+<li>时间复杂度：O(N)，其中 N 为数组的长度。</li>
+<li>空间复杂度：O(N)，其中 N 为数组的长度。</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2023/11/29/%E6%B5%8B%E8%AF%95/" title="测试"><span class="has-text-weight-semibold">Next: 测试</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="blczlyx/Blogs" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article><article class="mt-6 comment-container" id="vcomments"></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/blczlyx"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> ChaosSRX_x 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
