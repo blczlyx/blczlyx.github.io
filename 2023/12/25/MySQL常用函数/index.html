@@ -1,0 +1,603 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>MySQL常用函数</title><meta name="description" content="SEER"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="AABSABS(x)，返回 x 的绝对值
+SELECT ABS(-3.14);		-- 输出结果：3.14
+
+
+
+AVGAVG(expression)，返回表达式（expression）的平均值
+
+NULL 值被忽略
+
+CCASTCAST(value AS datatype)，将一个值（value）转换为指定的数据类型（datatype）
+SELECT CAST(&quot;20231215&quot; AS DATE);	-- 输出结果：2023-12-15
+SELECT CAST(&quot;172512&quot; AS TIME);		-- 输出结果：17:25:12
+
+
+value 可以是任何类型
+
+CHAR_LENGTHCHAR_LENGTH()，返回字符串的长度
+SELECT CHAR_LENGTH(&quot;年薪50W&quot;);		-- 输出.."><script src="//unpkg.com/valine/dist/Valine.min.js"></script><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">ChaosSRX_x</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">MySQL常用函数</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#A"><span class="toc-text">A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ABS"><span class="toc-text">ABS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AVG"><span class="toc-text">AVG</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-text">C</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CAST"><span class="toc-text">CAST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CHAR-LENGTH"><span class="toc-text">CHAR_LENGTH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CONCAT"><span class="toc-text">CONCAT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CONNECTION-ID"><span class="toc-text">CONNECTION_ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COUNT"><span class="toc-text">COUNT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CURRENT-DATE"><span class="toc-text">CURRENT_DATE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CURRENT-USER"><span class="toc-text">CURRENT_USER</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D"><span class="toc-text">D</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DATE"><span class="toc-text">DATE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DATEDIFF"><span class="toc-text">DATEDIFF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DATE-ADD"><span class="toc-text">DATE_ADD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DATE-FORMAT"><span class="toc-text">DATE_FORMAT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#F"><span class="toc-text">F</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FIND-IN-SET"><span class="toc-text">FIND_IN_SET</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I"><span class="toc-text">I</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IF"><span class="toc-text">IF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IFNULL"><span class="toc-text">IFNULL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ISNULL"><span class="toc-text">ISNULL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L"><span class="toc-text">L</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LENGTH"><span class="toc-text">LENGTH</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#M"><span class="toc-text">M</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MAX"><span class="toc-text">MAX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MIN"><span class="toc-text">MIN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MOD"><span class="toc-text">MOD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N"><span class="toc-text">N</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NOW"><span class="toc-text">NOW</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NULLIF"><span class="toc-text">NULLIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R"><span class="toc-text">R</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ROUND"><span class="toc-text">ROUND</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S"><span class="toc-text">S</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#STR-TO-DATE"><span class="toc-text">STR_TO_DATE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SUBSTRING"><span class="toc-text">SUBSTRING</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SUM"><span class="toc-text">SUM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T"><span class="toc-text">T</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TIME-FORMAT"><span class="toc-text">TIME_FORMAT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U"><span class="toc-text">U</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#USER"><span class="toc-text">USER</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">MySQL常用函数</h1><time class="has-text-grey" datetime="2023-12-25T02:39:12.460Z">2023-12-25</time><article class="mt-2 post-content"><h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><h4 id="ABS"><a href="#ABS" class="headerlink" title="ABS"></a>ABS</h4><p><code>ABS(x)</code>，返回 x 的绝对值</p>
+<pre><code class="hljs mysql">SELECT ABS(-3.14);		-- 输出结果：3.14</code></pre>
+
+
+
+<h4 id="AVG"><a href="#AVG" class="headerlink" title="AVG"></a>AVG</h4><p><code>AVG(expression)</code>，返回表达式（expression）的平均值</p>
+<ul>
+<li>NULL 值被忽略</li>
+</ul>
+<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><h4 id="CAST"><a href="#CAST" class="headerlink" title="CAST"></a>CAST</h4><p><code>CAST(value AS datatype)</code>，将一个值（value）转换为指定的数据类型（datatype）</p>
+<pre><code class="hljs mysql">SELECT CAST("20231215" AS DATE);	-- 输出结果：2023-12-15
+SELECT CAST("172512" AS TIME);		-- 输出结果：17:25:12</code></pre>
+
+<ul>
+<li><code>value</code> 可以是任何类型</li>
+</ul>
+<h4 id="CHAR-LENGTH"><a href="#CHAR-LENGTH" class="headerlink" title="CHAR_LENGTH"></a>CHAR_LENGTH</h4><p><code>CHAR_LENGTH()</code>，返回字符串的长度</p>
+<pre><code class="hljs mysql">SELECT CHAR_LENGTH("年薪50W");		-- 输出结果：5</code></pre>
+
+<ul>
+<li><p>等同于 <code>CHARACTER_LENGTH()</code> 函数</p>
+</li>
+<li><p>计算单位是<strong>字符</strong>，汉字、数字、字母都算是一个字符</p>
+</li>
+</ul>
+<h4 id="CONCAT"><a href="#CONCAT" class="headerlink" title="CONCAT"></a>CONCAT</h4><p><code>CONCAT()</code>，将几个字符串加在一起</p>
+<pre><code class="hljs mysql">SELECT CONCAT("Hello ", "World", "!");		-- 输出结果：Hello World!</code></pre>
+
+
+
+<h4 id="CONNECTION-ID"><a href="#CONNECTION-ID" class="headerlink" title="CONNECTION_ID"></a>CONNECTION_ID</h4><p><code>CONNECTION_ID()</code>，返回当前连接的唯一连接 ID</p>
+<pre><code class="hljs mysql">SELECT CONNECTION_ID();		-- 输出结果：8</code></pre>
+
+
+
+<h4 id="COUNT"><a href="#COUNT" class="headerlink" title="COUNT"></a>COUNT</h4><p><code>COUNT()</code>，返回匹配指定条件的行数</p>
+<pre><code class="hljs mysql">SELECT COUNT(column_name) FROM table_name;		-- 返回指定列的值的数目(不计入 NULL)
+SELECT COUNT(*) FROM table_name;	-- 返回表中的所有记录数(包含 NULL)
+SELECT COUNT(DISTINCT column_name) FROM table_name;		-- 返回不包含 NULL 值的唯一行数(即就算有 8 个 5，也只记 1 个)</code></pre>
+
+<ul>
+<li><code>COUNT()</code> 函数的返回类型为 <code>BIGINT</code> </li>
+<li>若没有找到匹配的行，则返回 0</li>
+</ul>
+<h4 id="CURRENT-DATE"><a href="#CURRENT-DATE" class="headerlink" title="CURRENT_DATE"></a>CURRENT_DATE</h4><p><code>CURRENT_DATE()</code>，返回当前日期</p>
+<pre><code class="hljs mysql">SELECT CURRENT_DATE();		-- 输出结果：2023-12-18</code></pre>
+
+<ul>
+<li>等同于 <code>CURDATE()</code> 函数</li>
+</ul>
+<h4 id="CURRENT-USER"><a href="#CURRENT-USER" class="headerlink" title="CURRENT_USER"></a>CURRENT_USER</h4><p><code>CURRENT_USER()</code>，返回服务器用来验证当前客户端的 MySQL 账户的用户名和主机名</p>
+<pre><code class="hljs mysql">SELECT CURRENT_USER();		-- 输出结果：root@localhost</code></pre>
+
+<ul>
+<li>结果以 UTF8 字符集的字符串形式返回</li>
+</ul>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><h4 id="DATE"><a href="#DATE" class="headerlink" title="DATE"></a>DATE</h4><p><code>DATE(expression)</code>，从日期时间表达式中提取日期部分</p>
+<pre><code class="hljs mysql">select DATE("2023-12-22 19:29:22");		-- 输出结果：2023-12-22
+select DATE("The date is 2023-12-22");	-- 输出结果：NULL</code></pre>
+
+<ul>
+<li>如果表达式（expression）不是日期或日期时间，则返回</li>
+</ul>
+<h4 id="DATEDIFF"><a href="#DATEDIFF" class="headerlink" title="DATEDIFF"></a>DATEDIFF</h4><p><code>DATEDIFF(date1,date2)</code>，返回两个日期值（date1 和 date2）之间的天数</p>
+<pre><code class="hljs mysql">SELECT DATEDIFF("2023-12-25","2023-11-25");		-- 输出结果：30
+SELECT DATEDIFF("2023-12-25 10:04:22","2023-11-25 11:23:45");	-- 输出结果：30</code></pre>
+
+
+
+<h4 id="DATE-ADD"><a href="#DATE-ADD" class="headerlink" title="DATE_ADD"></a>DATE_ADD</h4><p><code>DATE_ADD(date,INTERVAL value addunit)</code>，将时间/日期间隔（value）添加到日期（date），然后返回日期</p>
+<pre><code class="hljs mysql">SELECT DATE_ADD("2023-12-22 10:11:21", INTERVAL 15 MINUTE);		-- 输出结果：2023-12-22 10:26:21
+SELECT DATE_ADD("2023-12-22 10:11:21", INTERVAL -3 HOUR);		-- 输出结果：2023-12-22 07:11:21
+SELECT DATE_ADD("2023-12-22", INTERVAL 5 DAY);		-- 输出结果：2023-12-27
+SELECT DATE_ADD("2023-12-22", INTERVAL -2 MONTH);	-- 输出结果：2023-10-22</code></pre>
+
+<ul>
+<li><p>参数值 addunit</p>
+<table>
+<thead>
+<tr>
+<th>间隔类型（addunit）</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MICROSECOND</td>
+<td>微秒</td>
+</tr>
+<tr>
+<td>SECOND</td>
+<td>秒</td>
+</tr>
+<tr>
+<td>MINUTE</td>
+<td>分钟</td>
+</tr>
+<tr>
+<td>HOUR</td>
+<td>小时</td>
+</tr>
+<tr>
+<td>DAY</td>
+<td>天</td>
+</tr>
+<tr>
+<td>WEEK</td>
+<td>星期</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>月</td>
+</tr>
+<tr>
+<td>QUARTER</td>
+<td>季度</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>年</td>
+</tr>
+<tr>
+<td>SECOND_MICROSECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>MINUTE_MICROSECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>MINUTE_SECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>HOUR_MICROSECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>HOUR_SECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>HOUR_MINUTE</td>
+<td></td>
+</tr>
+<tr>
+<td>DAY_MICROSECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>DAY_SECOND</td>
+<td></td>
+</tr>
+<tr>
+<td>DAY_MINUTE</td>
+<td></td>
+</tr>
+<tr>
+<td>DAY_HOUR</td>
+<td></td>
+</tr>
+<tr>
+<td>YEAR_MONTH</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="DATE-FORMAT"><a href="#DATE-FORMAT" class="headerlink" title="DATE_FORMAT"></a>DATE_FORMAT</h4><p><code>DATE_FORMAT(date,format)</code>，按指定格式（format）格式化日期（date）</p>
+<pre><code class="hljs mysql">SELECT DATE_FORMAT("2023-12-20", "%Y-%m");		-- 输出结果：2023-12</code></pre>
+
+<ul>
+<li><p>参数值 format</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%a</td>
+<td>工作日的缩写名称（周日至周六）</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>缩写月份名称（1 月至 12 月）</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>数字月份名称（0 到 12）</td>
+</tr>
+<tr>
+<td>%D</td>
+<td>以数字形式表示的月份中的日期，后跟后缀 (1st, 2nd, 3rd, …)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>以数值表示的月份中的日期（01 到 31）</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>以数字形式表示的月份中的日期（0 到 31）</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>微秒（000000 到 999999）</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>小时（00 到 23）</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>分钟（00 到 59）</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>一年中的某一天（001 到 366）</td>
+</tr>
+<tr>
+<td>%k</td>
+<td>小时（0 到 23）</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>小时（1 到 12）</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>完整的月份名称（1 月至 12 月）</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>数字形式的月份名称（00 到 12）</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>上午或下午</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>12 小时 AM 或 PM 格式的时间 (hh:mm:ss AM/PM)</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>24 小时制时间 (hh:mm:ss)</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>星期天是一周的第一天（00 到 53）</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>星期一是一周的第一天的星期（00 到 53）</td>
+</tr>
+<tr>
+<td>%V</td>
+<td>星期天是一周的第一天（01 到 53）。与 %X 一起使用</td>
+</tr>
+<tr>
+<td>%v</td>
+<td>星期一是一周的第一天的星期（01 到 53）。与 %x 一起使用</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>完整的工作日名称（周日至周六）</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>星期天=0，星期六=6</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>星期天是一周的第一天的星期。与 %V 一起使用</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>星期一是一周的第一天的一周的年份。与 %v 一起使用</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>4 位数字形式的年份</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>2 位数字形式的年份</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><h4 id="FIND-IN-SET"><a href="#FIND-IN-SET" class="headerlink" title="FIND_IN_SET"></a>FIND_IN_SET</h4><p><code>FIND_IN_SET(string,string_list)</code>，返回字符串（string）在字符列表（string_list）中的位置</p>
+<pre><code class="hljs mysql">SELECT FIND_IN_SET("q", "s,q,l");	-- 输出结果：2
+SELECT FIND_IN_SET("q", "sql");		-- 输出结果：0</code></pre>
+
+
+
+<h3 id="I"><a href="#I" class="headerlink" title="I"></a>I</h3><h4 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h4><p><code>IF(expr1,expr2,expr3)</code>，如果 expr1 的值为 true，则返回 expr2 的值，如果 expr1 的值为 false，则返回 expr3 的值</p>
+<pre><code class="hljs mysql">SELECT IF(TRUE,'A','B');	-- 输出结果：A
+SELECT IF(FALSE,'A','B');	-- 输出结果：B</code></pre>
+
+
+
+<h4 id="IFNULL"><a href="#IFNULL" class="headerlink" title="IFNULL"></a>IFNULL</h4><p><code>IFNULL(expr1,expr2)</code>，如果 expr1 的值为 null，则返回 expr2 的值，如果 expr1 的值不为 null，则返回 expr1 的值</p>
+<pre><code class="hljs mysql">SELECT IFNULL(NULL,'B');		-- 输出结果：B
+SELECT IFNULL('HELLO','B');		-- 输出结果：HELLO</code></pre>
+
+
+
+<h4 id="ISNULL"><a href="#ISNULL" class="headerlink" title="ISNULL"></a>ISNULL</h4><p><code>ISNULL(expr)</code>，如果 expr 的值为 null，则返回 1，如果 expr1 的值不为 null，则返回 0</p>
+<pre><code class="hljs mysql">SELECT ISNULL(NULL);		-- 输出结果：1
+SELECT ISNULL('HELLO');		-- 输出结果：0</code></pre>
+
+
+
+<h3 id="L"><a href="#L" class="headerlink" title="L"></a>L</h3><h4 id="LENGTH"><a href="#LENGTH" class="headerlink" title="LENGTH"></a>LENGTH</h4><p><code>LENGTH()</code>，返回字符串的长度</p>
+<pre><code class="hljs mysql">SELECT LENGTH("年薪50W");		-- 输出结果：9</code></pre>
+
+<ul>
+<li>计算单位是<strong>字节</strong> </li>
+<li>UTF8 编码：一个汉字占 3 个字节，一个数字或字母占 1 个字节</li>
+<li>GBK 编码：一个汉字占 2 个字节，一个数字或字母占 1 个字节</li>
+</ul>
+<h3 id="M"><a href="#M" class="headerlink" title="M"></a>M</h3><h4 id="MAX"><a href="#MAX" class="headerlink" title="MAX"></a>MAX</h4><p><code>MAX()</code>，返回指定列的最大值</p>
+<h4 id="MIN"><a href="#MIN" class="headerlink" title="MIN"></a>MIN</h4><p><code>MIN()</code>，返回指定列的最小值</p>
+<h4 id="MOD"><a href="#MOD" class="headerlink" title="MOD"></a>MOD</h4><p><code>MOD(x,y)</code>，返回 x 除以 y 的余数</p>
+<pre><code class="hljs mysql">SELECT MOD(18,4);	-- 输出结果：2</code></pre>
+
+
+
+<h3 id="N"><a href="#N" class="headerlink" title="N"></a>N</h3><h4 id="NOW"><a href="#NOW" class="headerlink" title="NOW"></a>NOW</h4><p><code>NOW()</code>，返回当前系统的日期和时间</p>
+<pre><code class="hljs mysql">SELECT NOW();	-- 输出结果：2023-12-14 15:06:18</code></pre>
+
+
+
+<h4 id="NULLIF"><a href="#NULLIF" class="headerlink" title="NULLIF"></a>NULLIF</h4><p><code>NULLIF(expr1,expr2)</code>，如果 expr1=expr2 成立，那么返回值为 null，否则返回值为 expr1 的值</p>
+<pre><code class="hljs mysql">SELECT NULLIF('A','A');		-- 输出结果：null
+SELECT NULLIF('A','B');		-- 输出结果：A</code></pre>
+
+
+
+<h3 id="R"><a href="#R" class="headerlink" title="R"></a>R</h3><h4 id="ROUND"><a href="#ROUND" class="headerlink" title="ROUND"></a>ROUND</h4><p><code>ROUND(number,decimals)</code>，将数字（number）四舍五入到指定的小数位数（decimals，可选，若省略，则返回整数）</p>
+<pre><code class="hljs mysql">SELECT ROUND(114.514,2);	-- 输出结果：114.51
+SELECT ROUND(114.514);		-- 输出结果：115
+SELECT ROUND(114.514,0);	-- 输出结果：115</code></pre>
+
+
+
+<h3 id="S"><a href="#S" class="headerlink" title="S"></a>S</h3><h4 id="STR-TO-DATE"><a href="#STR-TO-DATE" class="headerlink" title="STR_TO_DATE"></a>STR_TO_DATE</h4><p><code>STR_TO_DATE(string,format)</code>，根据字符串（string）和格式（format）返回日期</p>
+<pre><code class="hljs mysql">SELECT STR_TO_DATE("December 15 2023", "%M %d %Y");		-- 输出结果：2023-12-15</code></pre>
+
+<ul>
+<li><p>参数值 format</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%a</td>
+<td>工作日的缩写名称（周日至周六）</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>缩写月份名称（1 月至 12 月）</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>数字月份名称（0 到 12）</td>
+</tr>
+<tr>
+<td>%D</td>
+<td>以数字形式表示的月份中的日期，后跟后缀 (1st, 2nd, 3rd, …)</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>以数值表示的月份中的日期（01 到 31）</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>以数字形式表示的月份中的日期（0 到 31）</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>微秒（000000 到 999999）</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>小时（00 到 23）</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>分钟（00 到 59）</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>一年中的某一天（001 到 366）</td>
+</tr>
+<tr>
+<td>%k</td>
+<td>小时（0 到 23）</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>小时（1 到 12）</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>完整的月份名称（1 月至 12 月）</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>数字形式的月份名称（01 到 12）</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>上午或下午</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>12 小时 AM 或 PM 格式的时间 (hh:mm:ss AM/PM)</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>24 小时制时间 (hh:mm:ss)</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>星期天是一周的第一天（00 到 53）</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>星期一是一周的第一天的星期（00 到 53）</td>
+</tr>
+<tr>
+<td>%V</td>
+<td>星期天是一周的第一天（01 到 53）。与 %X 一起使用</td>
+</tr>
+<tr>
+<td>%v</td>
+<td>星期一是一周的第一天的星期（01 到 53）。与 %X 一起使用</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>完整的工作日名称（周日至周六）</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>星期天=0，星期六=6</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>星期天是一周的第一天的星期。与 %V 一起使用</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>星期一是一周的第一天的一周的年份。与 %V 一起使用</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>4 位数字形式的年份</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>2 位数字形式的年份</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="SUBSTRING"><a href="#SUBSTRING" class="headerlink" title="SUBSTRING"></a>SUBSTRING</h4><p><code>SUBSTRING(string,start,length)</code>，从 string 中提取子字符串，从位置 start 开始，提取 length 个字符</p>
+<pre><code class="hljs mysql">SELECT SUBSTRING("Hello World!", 3, 5);		-- 输出结果：llo W</code></pre>
+
+
+
+<h4 id="SUM"><a href="#SUM" class="headerlink" title="SUM"></a>SUM</h4><p><code>SUM()</code>，返回数值列的总数</p>
+<h3 id="T"><a href="#T" class="headerlink" title="T"></a>T</h3><h4 id="TIME-FORMAT"><a href="#TIME-FORMAT" class="headerlink" title="TIME_FORMAT"></a>TIME_FORMAT</h4><p><code>TIME_FORMAT(time,format)</code>，格式化时间</p>
+<pre><code class="hljs mysql">SELECT TIME_FORMAT("173611", "%H:%i:%s");	-- 输出结果：17:36:11</code></pre>
+
+<ul>
+<li><p>参数值 format</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%f</td>
+<td>微秒（000000 到 999999）</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>小时（00 到 23）</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>小时（00 到 12）</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>分钟（00 到 59）</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>上午或下午</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>12 小时 AM 或 PM 格式的时间 (hh:mm:ss AM/PM)</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>秒（00 到 59）</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>24 小时制时间 (hh:mm:ss)</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="U"><a href="#U" class="headerlink" title="U"></a>U</h3><h4 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h4><p><code>USER()</code>，返回 MySQL 连接的当前用户名和主机名</p>
+<pre><code class="hljs mysql">SELECT USER();		-- 输出结果：root@localhost</code></pre>
+
+<ul>
+<li>等同于 <code>SESSION_USER()</code> 函数和 <code>SYSTEM_USER()</code> 函数</li>
+</ul>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li><p>MySQL 5.0.3 版本之后 varchar 类型大小的计算方式有所变化，从最早的按字节算大小 varchar(length) 改成了 varchar(char_length)</p>
+<ol>
+<li>MySQL 5.0.3 之前：</li>
+</ol>
+<p>数据类型大小：0–255 字节<br>详解：varchar(20) 中的 20 表示字节数，如果存放 utf-8 编码的话只能放 6 个汉字。varchar(n)，这里的 n 表示字节数</p>
+<ol start="2">
+<li>MySQL 5.0.3 之后：</li>
+</ol>
+<p>数据类型大小：0–65535 字节，但最多占 65532 字节（其中需要用 2 个字节存放长度，小于 255 字节用 1 个字节存放长度）<br>详解：varchar(20) 表示字符数，不管什么编码，不管是英文还是中文都可以存放 20 个</p>
+</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2023/11/30/217.%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/" title="217.存在重复元素"><span class="has-text-weight-semibold">Next: 217.存在重复元素</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="blczlyx/Blogs" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article><article class="mt-6 comment-container" id="vcomments"></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/blczlyx"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> ChaosSRX_x 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
